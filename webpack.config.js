@@ -20,8 +20,28 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              importLoaders: 1,
+              sourceMap: true
+            }
+          }
+        ]
       }
     ]
   },
-  plugins: [htmlPlugin]
+  plugins: [ htmlPlugin ],
+  devtool: "eval-source-map",
+  devServer: {
+    contentBase: path.join(__dirname, 'public')
+  }
 };
