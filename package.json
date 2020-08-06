@@ -11,6 +11,8 @@
   "author": "Fuhang Wang",
   "license": "MIT",
   "dependencies": {
+    "prop-types": "^15.7.2",
+    "r-obj-model": "^0.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
