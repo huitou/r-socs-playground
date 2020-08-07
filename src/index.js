@@ -6,9 +6,19 @@ import { connect } from 'r-socs-core';
 import { ObjectModel } from 'r-obj-model';
 
 const modelName = 'myObjectModel';
-const myObjStr = JSON.stringify({ addedStuff: 'addedStuff' });
 
 class TargetComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
   render() {
     return (
       <div>
@@ -17,7 +27,13 @@ class TargetComponent extends Component {
         <div>{JSON.stringify(this.props[modelName].hifu)}</div>
         <div>hefu:</div>
         <div>
-          <button onClick={() => this.props[modelName].hefu.change(JSON.parse(myObjStr))}>change</button>
+          <textarea
+            rows="5"
+            cols="33"
+            placeholder="Please write your JSON string here ..."
+            value={this.state.value} onChange={this.handleChange}
+          />
+          <button onClick={() => this.props[modelName].hefu.change(JSON.parse(this.state.value))}>change</button>
         </div>
         <div>
           <button onClick={() => this.props[modelName].hefu.reset()}>reset</button>
